@@ -1,32 +1,28 @@
 import java.util.Scanner;
-import java.util.Stack;
-import java.util.Queue;
-import java.util.LinkedList;
-//import java.util.PriorityQueue;
-//can't use priority queue as it'll return alphabet priority
+import java.util.Deque;
+import java.util.ArrayDeque;
+
 
 public class PalindromeChecker {
     /*
      * @author developer
-     * @version 6.0
+     * @version 7.0
      */
     public static void main(String[] args) {
         Scanner scn = new Scanner(System.in);
         boolean flag = true;
         System.out.print("Input text: ");
         String s = scn.next();
-        Stack<Character> stack = new Stack<>();
-        Queue<Character> queue = new LinkedList<>();
+        Deque<Character> deque = new ArrayDeque<>();
 
         char[] str = s.toCharArray();
 
         for(char c: str){
-            stack.push(c);
-            queue.offer(c);
+            deque.add(c);
         }
 
-        while(!queue.isEmpty()){
-            if(queue.poll()!=stack.pop()){
+        while(deque.size()>1){
+            if(deque.removeFirst()!=deque.removeLast()){
                 flag = false;
                 break;
             }
