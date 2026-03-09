@@ -3,26 +3,32 @@ import java.util.Scanner;
 public class PalindromeChecker {
     /*
      * @author developer
-     * @version 8.0
+     * @version 10.0
      */
 
     public static void main(String[] args) {
         Scanner scn = new Scanner(System.in);
-        //boolean flag = true;
+        boolean flag = true;
         System.out.print("Input text: ");
         String s = scn.next();
 
-        //char[] str = s.toCharArray();
+        String normalized = normaliseString(s);
+
+        for (int i = 0; i < normalized.length() / 2; i++) {
+            if (normalized.charAt(i) != normalized.charAt(normalized.length() - 1 - i)) {
+                flag = false;
+                break;
+            }
+        }
 
         System.out.print("Is it a Palindrome? : ");
-        System.out.println(check(s,0,s.length()-1));
-        //System.out.println(flag);
+        System.out.println(flag);
     }
 
-    public static boolean check(String s,int left,int right){
-        if(left>=right)return true;
-        if(s.charAt(left)!=s.charAt(right)) return false;
-        return check(s,left+1,right-1);
+    public static String normaliseString(String s) {
+        String symbolnoSpace = s.replaceAll("[^a-zA-Z]", "");//replacing symbols n spaces with null
+        String lowercase = symbolnoSpace.toLowerCase();//covert to lowercase
+        return lowercase;//return string
     }
 
 }
