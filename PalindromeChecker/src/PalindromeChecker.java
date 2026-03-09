@@ -3,7 +3,7 @@ import java.util.Scanner;
 public class PalindromeChecker {
     /*
      * @author developer
-     * @version 8.0
+     * @version 9.0
      */
 
     public static void main(String[] args) {
