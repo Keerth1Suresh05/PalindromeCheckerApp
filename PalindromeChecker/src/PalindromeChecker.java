@@ -1,9 +1,10 @@
 import java.util.Scanner;
+import java.util.Stack;
 
 public class PalindromeChecker {
     /*
      * @author developer
-     * @version 11.0
+     * @version 12.0
      */
 
     public static void main(String[] args) {
@@ -11,28 +12,35 @@ public class PalindromeChecker {
         //boolean flag = true;
         System.out.print("Input text: ");
         String s = scn.next();
-        PalindromeService obj = new PalindromeService();
+        StackStrategy obj = new StackStrategy();
 
         System.out.print("Is it a Palindrome? : ");
-        System.out.println(obj.checkPalindrome(s));
+        System.out.println(obj.check(s));
+        scn.close();
     }
 }
 
-class PalindromeService {
-    public boolean checkPalindrome(String s) {
-        int start = 0;
-        int end = s.length() - 1;
+interface PalindromeStrategy{}
+
+class StackStrategy implements PalindromeStrategy{
+    public boolean check(String s){
+        Stack<Character> stack = new Stack<>();
         char[] str = s.toCharArray();
+        String str1="";
 
-        while (start < end) {
-            if (str[start] != str[end]) {
-                return false;
-            }
-
-            start++;
-            end--;
+        for(char c:str){
+            stack.push(c);
         }
-        return true;
+        for(char c:str){
+            str1+=stack.pop();
+        }
+
+        if(s.equals(str1)){
+            return true;
+        }
+        else {
+            return false;}
     }
 }
+
 
